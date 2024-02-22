@@ -41,11 +41,26 @@
                     <th scope="col">BAIRRO</th>
                     <th scope="col">CIDADE</th>
                     <th scope="col">ESTADO</th>
-                    <th scope="col">Created at</th>
                 </tr>
             </thead>
             <tbody>
-                <!--percorre e lista -->
+                <?php
+                    $listagem = new EnderecoController;
+                    $enderecos = $listagem->listar();
+
+                    foreach ($enderecos as $endereco) {
+                        $cepFormatado = preg_replace('/[^0-9]/', '', $endereco['cep']);
+                        echo "<tr>";
+                        echo "<td>" . $cepFormatado . "</td>";
+                        echo "<td>" . $endereco['logradouro'] . "</td>";
+                        echo "<td>" . $endereco['numero'] . "</td>";
+                        echo "<td>" . $endereco['bairro'] . "</td>";
+                        echo "<td>" . $endereco['cidade'] . "</td>";
+                        echo "<td>" . $endereco['estado'] . "</td>";
+                        echo "</tr>";
+                    }
+
+                ?>
             </tbody>
         </table> 
 

@@ -41,6 +41,20 @@ class EnderecoController{
         }
 
     }
+
+    public function listar()
+    {
+        $conexao = new Conexao;
+        
+        $query = $conexao->conectarPDO();
+
+        $stmt = $query->query('SELECT * FROM enderecos');
+
+        $resultados = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        return $resultados;
+
+    }
 }
 
 ?>
